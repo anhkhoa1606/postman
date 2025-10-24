@@ -20,6 +20,18 @@ jobs:
         with:
           node-version: 20
 
+     
+
+      - name: Install API dependencies
+        run: npm install
+
+      - name: Start API Service in Background (skipped)
+        run: |
+          # No start script is defined in this repository's package.json.
+          # If you have an API to run for integration tests, add a "start" script
+          # to package.json or modify this step to run the correct startup command.
+          echo "No start script present - skipping API start."
+
       - name: Install global tools
         run: |
           npm install -g newman postman-to-openapi redoc-cli
@@ -27,7 +39,7 @@ jobs:
       - name: Run newman tests
         run: |
           newman run postman_collection.json -e postman_environment.json --reporters cli,json --reporter-json-export newman-report.json
-        continue-on-error: false
+        continue-on-error: false 
 
       - name: Convert Postman collection to OpenAPI
         run: |
