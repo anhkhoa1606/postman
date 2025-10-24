@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Example API Tests Collection" tests="7" time="0.122">
+  <testsuite name="Health check" id="9c12c428-fd34-4f97-9f64-6bfe288af8fb" timestamp="2025-10-24T08:14:56.036Z" tests="3" failures="0" errors="0" time="0.083">
+    <testcase name="Status is 200" time="0.083" classname="HealthCheck"/>
+    <testcase name="Response time under 1000ms" time="0.083" classname="HealthCheck"/>
+    <testcase name="Body contains ok or status" time="0.083" classname="HealthCheck"/>
+  </testsuite>
+  <testsuite name="Get users list" id="dbf578de-6b1a-4997-b36c-e6a11c570048" timestamp="2025-10-24T08:14:56.036Z" tests="3" failures="1" errors="0" time="0.007">
+    <testcase name="Status is 200 or 204" time="0.007" classname="GetUsersList">
+      <failure type="AssertionFailure" message="expected [ 200, 204 ] to include 404">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: 72e811ad-6a4e-4b1c-a15e-a0b0bbadb470.]]>
+        <![CDATA[Collection name: Example API Tests Collection.]]>
+        <![CDATA[Request name: Get users list.]]>
+        <![CDATA[Test description: Status is 200 or 204.]]>
+        <![CDATA[Error message: expected [ 200, 204 ] to include 404.]]>
+        <![CDATA[Stacktrace: AssertionError: expected [ 200, 204 ] to include 404
+   at Object.eval sandbox-script.js:1:2).]]>
+      </failure>
+    </testcase>
+    <testcase name="If 200 then body is array" time="0.007" classname="GetUsersList"/>
+    <testcase name="Response time under 800ms" time="0.007" classname="GetUsersList"/>
+  </testsuite>
+  <testsuite name="Create user" id="6f3d6331-18bc-4771-8c5f-a6419005529c" timestamp="2025-10-24T08:14:56.036Z" tests="3" failures="2" errors="0" time="0.010">
+    <testcase name="Status is 201 or 200" time="0.010" classname="CreateUser">
+      <failure type="AssertionFailure" message="expected [ 200, 201 ] to include 404">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: 72e811ad-6a4e-4b1c-a15e-a0b0bbadb470.]]>
+        <![CDATA[Collection name: Example API Tests Collection.]]>
+        <![CDATA[Request name: Create user.]]>
+        <![CDATA[Test description: Status is 201 or 200.]]>
+        <![CDATA[Error message: expected [ 200, 201 ] to include 404.]]>
+        <![CDATA[Stacktrace: AssertionError: expected [ 200, 201 ] to include 404
+   at Object.eval sandbox-script.js:1:3).]]>
+      </failure>
+    </testcase>
+    <testcase name="Response contains id and email" time="0.010" classname="CreateUser">
+      <failure type="AssertionFailure" message="Unexpected token '&lt;' at 1:1&#xA;&lt;!DOCTYPE html>&#xA;^">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: 72e811ad-6a4e-4b1c-a15e-a0b0bbadb470.]]>
+        <![CDATA[Collection name: Example API Tests Collection.]]>
+        <![CDATA[Request name: Create user.]]>
+        <![CDATA[Test description: Response contains id and email.]]>
+        <![CDATA[Error message: Unexpected token '<' at 1:1
+<!DOCTYPE html>
+^.]]>
+        <![CDATA[Stacktrace: JSONError: Unexpected token '<' at 1:1
+<!DOCTYPE html>
+^
+   at Object.eval sandbox-script.js:2:3).]]>
+      </failure>
+    </testcase>
+    <testcase name="Create took under 1000ms" time="0.010" classname="CreateUser"/>
+  </testsuite>
+  <testsuite name="Get user by id" id="bf986198-d77c-41ed-a7ec-ec277fc97742" timestamp="2025-10-24T08:14:56.036Z" tests="2" failures="2" errors="0" time="0.004">
+    <testcase name="Status is 200" time="0.004" classname="GetUserById">
+      <failure type="AssertionFailure" message="expected response to have status code 200 but got 404">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: 72e811ad-6a4e-4b1c-a15e-a0b0bbadb470.]]>
+        <![CDATA[Collection name: Example API Tests Collection.]]>
+        <![CDATA[Request name: Get user by id.]]>
+        <![CDATA[Test description: Status is 200.]]>
+        <![CDATA[Error message: expected response to have status code 200 but got 404.]]>
+        <![CDATA[Stacktrace: AssertionError: expected response to have status code 200 but got 404
+   at Object.eval sandbox-script.js:1:4).]]>
+      </failure>
+    </testcase>
+    <testcase name="Body has expected fields" time="0.004" classname="GetUserById">
+      <failure type="AssertionFailure" message="Unexpected token '&lt;' at 1:1&#xA;&lt;!DOCTYPE html>&#xA;^">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: 72e811ad-6a4e-4b1c-a15e-a0b0bbadb470.]]>
+        <![CDATA[Collection name: Example API Tests Collection.]]>
+        <![CDATA[Request name: Get user by id.]]>
+        <![CDATA[Test description: Body has expected fields.]]>
+        <![CDATA[Error message: Unexpected token '<' at 1:1
+<!DOCTYPE html>
+^.]]>
+        <![CDATA[Stacktrace: JSONError: Unexpected token '<' at 1:1
+<!DOCTYPE html>
+^
+   at Object.eval sandbox-script.js:2:4).]]>
+      </failure>
+    </testcase>
+  </testsuite>
+  <testsuite name="Update user" id="8d2beae0-1e2d-426e-9762-7283af64ace8" timestamp="2025-10-24T08:14:56.036Z" tests="2" failures="1" errors="0" time="0.004">
+    <testcase name="Status is 200 or 204" time="0.004" classname="UpdateUser">
+      <failure type="AssertionFailure" message="expected [ 200, 204 ] to include 404">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: 72e811ad-6a4e-4b1c-a15e-a0b0bbadb470.]]>
+        <![CDATA[Collection name: Example API Tests Collection.]]>
+        <![CDATA[Request name: Update user.]]>
+        <![CDATA[Test description: Status is 200 or 204.]]>
+        <![CDATA[Error message: expected [ 200, 204 ] to include 404.]]>
+        <![CDATA[Stacktrace: AssertionError: expected [ 200, 204 ] to include 404
+   at Object.eval sandbox-script.js:1:5).]]>
+      </failure>
+    </testcase>
+    <testcase name="If 200 then body contains updated name" time="0.004" classname="UpdateUser"/>
+  </testsuite>
+  <testsuite name="Get posts for user query" id="d7c4bb07-448b-4dce-8a2b-1e6537c70fb9" timestamp="2025-10-24T08:14:56.036Z" tests="2" failures="2" errors="0" time="0.010">
+    <testcase name="Status 200" time="0.010" classname="GetPostsForUserQuery">
+      <failure type="AssertionFailure" message="expected response to have status code 200 but got 404">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: 72e811ad-6a4e-4b1c-a15e-a0b0bbadb470.]]>
+        <![CDATA[Collection name: Example API Tests Collection.]]>
+        <![CDATA[Request name: Get posts for user query.]]>
+        <![CDATA[Test description: Status 200.]]>
+        <![CDATA[Error message: expected response to have status code 200 but got 404.]]>
+        <![CDATA[Stacktrace: AssertionError: expected response to have status code 200 but got 404
+   at Object.eval sandbox-script.js:1:6).]]>
+      </failure>
+    </testcase>
+    <testcase name="Body is array" time="0.010" classname="GetPostsForUserQuery">
+      <failure type="AssertionFailure" message="Unexpected token '&lt;' at 1:1&#xA;&lt;!DOCTYPE html>&#xA;^">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: 72e811ad-6a4e-4b1c-a15e-a0b0bbadb470.]]>
+        <![CDATA[Collection name: Example API Tests Collection.]]>
+        <![CDATA[Request name: Get posts for user query.]]>
+        <![CDATA[Test description: Body is array.]]>
+        <![CDATA[Error message: Unexpected token '<' at 1:1
+<!DOCTYPE html>
+^.]]>
+        <![CDATA[Stacktrace: JSONError: Unexpected token '<' at 1:1
+<!DOCTYPE html>
+^
+   at Object.eval sandbox-script.js:2:6).]]>
+      </failure>
+    </testcase>
+  </testsuite>
+  <testsuite name="Delete user" id="1f6c57d3-24cd-402e-8851-7a36b3e3bd7b" timestamp="2025-10-24T08:14:56.036Z" tests="2" failures="1" errors="0" time="0.004">
+    <testcase name="Status 200 or 204" time="0.004" classname="DeleteUser">
+      <failure type="AssertionFailure" message="expected [ 200, 204, 202 ] to include 404">
+        <![CDATA[Failed 1 times.]]>
+        <![CDATA[Collection JSON ID: 72e811ad-6a4e-4b1c-a15e-a0b0bbadb470.]]>
+        <![CDATA[Collection name: Example API Tests Collection.]]>
+        <![CDATA[Request name: Delete user.]]>
+        <![CDATA[Test description: Status 200 or 204.]]>
+        <![CDATA[Error message: expected [ 200, 204, 202 ] to include 404.]]>
+        <![CDATA[Stacktrace: AssertionError: expected [ 200, 204, 202 ] to include 404
+   at Object.eval sandbox-script.js:1:7).]]>
+      </failure>
+    </testcase>
+    <testcase name="Delete response time under 1000ms" time="0.004" classname="DeleteUser"/>
+  </testsuite>
+</testsuites>

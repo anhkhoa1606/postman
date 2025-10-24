@@ -1,0 +1,45 @@
+name: API CI and Docs
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test-and-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install global tools
+        run: |
+          npm install -g newman postman-to-openapi redoc-cli
+
+      - name: Run newman tests
+        run: |
+          newman run postman_collection.json -e postman_environment.json --reporters cli,json --reporter-json-export newman-report.json
+        continue-on-error: false
+
+      - name: Convert Postman collection to OpenAPI
+        run: |
+          postman-to-openapi postman_collection.json openapi.yaml --default-file-type json || true
+
+      - name: Build Redoc static site
+        run: |
+          mkdir -p docs
+          redoc-cli bundle openapi.yaml -o docs/index.html
+
+      - name: Deploy to gh pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GH_PAGES_TOKEN }}
+          publish_dir: ./docs

@@ -1,0 +1,11 @@
+{
+  "name": "api-ci-postman",
+  "version": "1.0.0",
+  "description": "API CI testing with Postman and Newman",
+  "scripts": {
+    "test": "newman run postman_collection.json -e postman_environment.json --reporters cli,junit --reporter-junit-export results.xml"
+  },
+  "devDependencies": {
+    "newman": "^6.1.0"
+  }
+}
