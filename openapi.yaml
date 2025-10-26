@@ -1,0 +1,69 @@
+openapi: 3.0.1
+info:
+  title: JSONPlaceholder (Example) - Minimal OpenAPI
+  version: "1.0.0"
+  description: |
+    Minimal OpenAPI definition for a subset of JSONPlaceholder endpoints.
+servers:
+  - url: https://jsonplaceholder.typicode.com
+paths:
+  /posts:
+    get:
+      summary: List posts
+      responses:
+        '200':
+          description: OK
+    post:
+      summary: Create post
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                body:
+                  type: string
+                userId:
+                  type: integer
+      responses:
+        '201':
+          description: Created
+  /posts/{id}:
+    get:
+      summary: Get a single post
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+  /posts/{id}/comments:
+    get:
+      summary: Get comments
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+  /users/{id}:
+    get:
+      summary: Get user
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK

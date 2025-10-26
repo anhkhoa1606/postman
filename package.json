@@ -1,0 +1,8 @@
+{
+  "name": "postman-newman-ci-sample",
+  "version": "1.0.0",
+  "scripts": {
+    "test:newman": "newman run postman_collection.json -e postman_environment.json --reporters cli,junit --reporter-junit-export newman-results/results.xml"
+  },
+  "devDependencies": {}
+}

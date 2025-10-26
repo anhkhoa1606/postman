@@ -1,0 +1,182 @@
+{
+  "info": {
+    "name": "JSONPlaceholder API Tests - Sample Collection",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Collection that runs a set of automated tests (>=8) against JSONPlaceholder (https://jsonplaceholder.typicode.com). Designed for use with Newman and GitHub Actions."
+  },
+  "item": [
+    {
+      "name": "Get Post 1",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://jsonplaceholder.typicode.com/posts/1",
+          "protocol": "https",
+          "host": [
+            "jsonplaceholder",
+            "typicode",
+            "com"
+          ],
+          "path": [
+            "posts",
+            "1"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status is 200', function () { pm.response.to.have.status(200); });",
+              "pm.test('Response time is less than 2000ms', function () { pm.expect(pm.response.responseTime).to.be.below(2000); });",
+              "pm.test('Has userId and id and title', function () { var json = pm.response.json(); pm.expect(json).to.have.property('userId'); pm.expect(json).to.have.property('id'); pm.expect(json).to.have.property('title'); });",
+              "pm.test('Content-Type is application/json; charset=utf-8', function () { pm.response.to.have.header('Content-Type'); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Get Posts list",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://jsonplaceholder.typicode.com/posts",
+          "protocol": "https",
+          "host": [
+            "jsonplaceholder",
+            "typicode",
+            "com"
+          ],
+          "path": [
+            "posts"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status is 200', function () { pm.response.to.have.status(200); });",
+              "pm.test('Response is an array and has at least 10 items', function () { var json = pm.response.json(); pm.expect(json).to.be.an('array'); pm.expect(json.length).to.be.above(9); });",
+              "pm.test('Each item has id and title', function () { var json = pm.response.json(); json.slice(0,5).forEach(function(item){ pm.expect(item).to.have.property('id'); pm.expect(item).to.have.property('title'); }); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Create Post",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"title\": \"foo\", \"body\": \"bar\", \"userId\": 1}"
+        },
+        "url": {
+          "raw": "https://jsonplaceholder.typicode.com/posts",
+          "protocol": "https",
+          "host": [
+            "jsonplaceholder",
+            "typicode",
+            "com"
+          ],
+          "path": [
+            "posts"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status is 201', function () { pm.response.to.have.status(201); });",
+              "pm.test('Response contains id and echoes title', function () { var json = pm.response.json(); pm.expect(json).to.have.property('id'); pm.expect(json.title).to.eql('foo'); });",
+              "pm.test('Created resource id is numeric', function () { var json = pm.response.json(); pm.expect(json.id).to.be.a('number'); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Get Comments for Post 1",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://jsonplaceholder.typicode.com/posts/1/comments",
+          "protocol": "https",
+          "host": [
+            "jsonplaceholder",
+            "typicode",
+            "com"
+          ],
+          "path": [
+            "posts",
+            "1",
+            "comments"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status is 200', function () { pm.response.to.have.status(200); });",
+              "pm.test('Comments array non-empty', function () { var json = pm.response.json(); pm.expect(json).to.be.an('array').and.to.not.be.empty; });",
+              "pm.test('Each comment has email', function () { var json = pm.response.json(); json.forEach(function(c){ pm.expect(c).to.have.property('email'); }); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Get User 1",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://jsonplaceholder.typicode.com/users/1",
+          "protocol": "https",
+          "host": [
+            "jsonplaceholder",
+            "typicode",
+            "com"
+          ],
+          "path": [
+            "users",
+            "1"
+          ]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Status is 200', function () { pm.response.to.have.status(200); });",
+              "pm.test('User has username and email', function () { var json = pm.response.json(); pm.expect(json).to.have.property('username'); pm.expect(json).to.have.property('email'); });"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
